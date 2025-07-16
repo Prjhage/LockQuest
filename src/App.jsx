@@ -3,32 +3,19 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const months = [
-  "january",
-  "february",
-  "march",
-  "april",
-  "may",
-  "june",
-  "july",
-  "august",
-  "september",
-  "october",
-  "november",
-  "december",
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
 ];
 
 const days = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
+  "monday", "tuesday", "wednesday", "thursday",
+  "friday", "saturday", "sunday",
 ];
 
-const romanRegex =
-  /^(?=[MDCLXVI])M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/i;
+const romanNumerals = [
+  "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+  "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"
+];
 
 const chessLetters = ["K", "Q", "R", "B", "N", "P"];
 
@@ -113,7 +100,9 @@ function App() {
     {
       id: 12,
       text: "Include a Roman numeral (I, II, X, etc.)",
-      valid: romanRegex.test(password),
+      valid: romanNumerals.some((r) =>
+        password.toUpperCase().includes(r)
+      ),
     },
     {
       id: 13,
@@ -172,16 +161,12 @@ function App() {
         {visibleRules.map((rule) => (
           <li
             key={rule.id}
-            // Apply base 'rule-item' class, validity classes, and 'active' class for visibility
             className={`rule-item ${rule.valid ? "valid" : "invalid"} ${
               rule.id <= maxRevealedRuleId ? "active" : ""
             }`}
-            // Add inline animation-delay for staggered appearance based on rule ID
-            // This ensures Rule 1 appears before Rule 2, etc., regardless of sorting by validity
             style={{ animationDelay: `${(rule.id - 1) * 0.1}s` }}
           >
             <strong className="rule-icon-wrapper">
-              {/* Wrap the icon in a span with 'rule-icon' for proper animation targeting */}
               <span className="rule-icon">{rule.valid ? "✔️" : "❌"}</span> Rule{" "}
               {rule.id}:
             </strong>{" "}
