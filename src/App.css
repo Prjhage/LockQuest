@@ -1,0 +1,495 @@
+/* Import Google Fonts for a modern, clean look */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* General Body Styles */
+
+body {
+    font-family: "Roboto", sans-serif;
+    /* Clean, modern font */
+    background: linear-gradient( 135deg, #f0f2f5 0%, #e0e6ed 100%);
+    /* Soft, subtle gradient */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* Use flexbox to center content vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Full viewport height */
+    color: #333;
+    /* Dark gray for good contrast */
+    overflow-x: hidden;
+    /* Prevent horizontal scrollbar */
+}
+
+
+/* App Container */
+
+.App {
+    max-width: 650px;
+    /* Slightly wider for better content flow */
+    width: 90%;
+    /* Responsive width */
+    margin: 30px auto;
+    /* Adjust margin for smaller screens */
+    text-align: center;
+    background: #ffffff;
+    /* Pure white background */
+    padding: 40px;
+    /* Increased padding */
+    border-radius: 16px;
+    /* More pronounced rounded corners */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    /* Deeper shadow for depth */
+    box-sizing: border-box;
+    /* Include padding in width */
+    position: relative;
+    overflow: hidden;
+    /* Ensure nothing spills out */
+    animation: fadeIn 0.8s ease-out forwards;
+    /* Smooth fade-in */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Header */
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    /* Distinct font for title */
+    font-size: 2.8rem;
+    /* Larger title */
+    margin-bottom: 30px;
+    /* More space below title */
+    color: #2c3e50;
+    /* Darker, sophisticated blue-gray */
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    /* Bolder title */
+    letter-spacing: 0.5px;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 70px;
+    /* Slightly wider underline */
+    height: 4px;
+    /* Slightly thicker underline */
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    /* Green gradient */
+    border-radius: 2px;
+    animation: underlineDraw 1s ease-out forwards;
+    /* Animated underline draw */
+}
+
+@keyframes underlineDraw {
+    from {
+        width: 0;
+    }
+    to {
+        width: 70px;
+    }
+}
+
+
+/* Input Field */
+
+input[type="text"] {
+    padding: 15px 20px;
+    /* More padding */
+    width: calc(100% - 40px);
+    /* Adjust width for padding */
+    max-width: 550px;
+    /* Increased max-width */
+    font-size: 1.15rem;
+    /* Slightly larger font */
+    border: 2px solid #ddd;
+    /* Lighter default border */
+    border-radius: 10px;
+    /* More rounded */
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transitions for focus */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* Subtle initial shadow */
+    color: #333;
+    /* Dark text color */
+}
+
+input[type="text"]:focus {
+    border-color: #28a745;
+    /* Vibrant green on focus */
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.2);
+    /* Soft green glow */
+}
+
+
+/* Progress Container */
+
+.progress-container {
+    background-color: #e9ecef;
+    /* Lighter background for the track */
+    height: 18px;
+    /* Slightly adjusted height */
+    border-radius: 9px;
+    overflow: hidden;
+    margin: 30px auto 15px;
+    /* Adjust margins */
+    max-width: 550px;
+    /* Match input max-width */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+    /* Subtle inner shadow */
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    /* Green gradient */
+    height: 100%;
+    width: 0;
+    transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Smoother, more dynamic transition */
+    border-radius: 9px;
+    /* Match container radius */
+    position: relative;
+    overflow: hidden;
+    /* For inner animation */
+}
+
+
+/* Add a subtle "shine" animation to the progress bar */
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    /* White overlay */
+    animation: progressBarShine 2s infinite linear;
+    /* Continuous shine */
+    transform: translateX(-100%);
+    /* Start off-screen */
+}
+
+@keyframes progressBarShine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.progress-text {
+    font-weight: 500;
+    /* Medium weight */
+    margin-bottom: 25px;
+    /* More space below text */
+    color: #555;
+    font-size: 1rem;
+}
+
+
+/* RULES LIST */
+
+.rules-list {
+    list-style: none;
+    padding: 0;
+    /* Add transition for overall list layout changes */
+    transition: padding-bottom 0.5s ease-out, margin-bottom 0.5s ease-out;
+    margin: 25px auto 0;
+    /* Adjust top margin for initial spacing */
+    text-align: left;
+}
+
+
+/* Rule item base style */
+
+
+/* This class must be added to your <li> elements in App.js for styling to apply */
+
+.rule-item {
+    display: flex;
+    /* Use flexbox for icon and text alignment */
+    align-items: center;
+    gap: 12px;
+    /* Space between icon and text */
+    opacity: 0;
+    /* Hidden by default */
+    transform: translateY(20px);
+    /* Start slightly below */
+    /* Add transitions for smooth appearance and layout adjustments */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, color 0.3s ease, font-weight 0.3s ease, margin-bottom 0.3s ease;
+    /* Smooth margin changes for "go down" effect */
+    margin-bottom: 15px;
+    /* Default spacing between rules */
+    font-size: 1.05rem;
+    /* Consistent font size */
+    padding: 0;
+    border-bottom: 1px dashed #e0e0e0;
+    /* Soft dashed line separator */
+    color: #444;
+    /* Default text color */
+}
+
+.rule-item:last-child {
+    border-bottom: none;
+    /* No border for the last item */
+}
+
+
+/* Rule visible with animation */
+
+
+/* This class must be added to your <li> elements in App.js when visible */
+
+.rule-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Styling for the icon and "Rule N:" text wrapper */
+
+.rule-icon-wrapper {
+    font-weight: bold;
+    /* Make "Rule N:" bold */
+    display: flex;
+    /* For flex alignment with the icon itself */
+    align-items: center;
+    gap: 8px;
+    /* Space between icon and "Rule N:" */
+}
+
+
+/* Styling for the actual icon */
+
+.rule-icon {
+    font-size: 1.4rem;
+    /* Larger icons */
+    line-height: 1;
+    /* Align vertically */
+    display: inline-block;
+    /* For transform animations */
+    flex-shrink: 0;
+    /* Prevent icon from shrinking */
+}
+
+
+/* Valid rule style */
+
+.rule-item.valid {
+    color: #28a745;
+    /* Green for valid rules */
+    font-weight: 500;
+}
+
+
+/* Invalid rule style */
+
+.rule-item.invalid {
+    color: #dc3545;
+    /* Red for invalid rules */
+    font-weight: 400;
+    /* Regular weight for invalid rules */
+}
+
+
+/* Animations for icons (tada for valid, shake for invalid) */
+
+
+/* These will now target the .rule-icon span */
+
+.rule-item.valid .rule-icon {
+    animation: tada 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rule-item.invalid .rule-icon {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes tada {
+    0% {
+        transform: scale(1);
+    }
+    10%,
+    20% {
+        transform: scale(0.9) rotate(-3deg);
+    }
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scale(1.1) rotate(3deg);
+    }
+    40%,
+    60%,
+    80% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-6px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(6px);
+    }
+}
+
+
+/* Success message */
+
+.success-msg {
+    color: #1c9c57;
+    font-size: 1.8rem;
+    /* Larger success message */
+    margin-top: 40px;
+    /* Default margin-top */
+    font-weight: 700;
+    /* Bolder */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    /* Bouncy pop-in */
+    /* Add transition for smooth repositioning when list expands */
+    transition: margin-top 0.5s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+
+/* Pop-in animation for success */
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    .App {
+        padding: 30px 25px;
+        /* Adjust padding */
+        margin: 20px auto;
+        /* Smaller margin */
+        border-radius: 12px;
+    }
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+    h1::after {
+        width: 60px;
+        height: 3px;
+    }
+    input[type="text"] {
+        padding: 12px 18px;
+        font-size: 1rem;
+    }
+    .progress-container {
+        height: 15px;
+        margin: 25px auto 12px;
+    }
+    .progress-text {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+    .rule-item {
+        font-size: 1rem;
+        margin-bottom: 12px;
+        /* Adjusted margin */
+    }
+    .rule-icon {
+        font-size: 1.2rem;
+    }
+    .success-msg {
+        font-size: 1.6rem;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .App {
+        padding: 25px 20px;
+        margin: 15px auto;
+        border-radius: 10px;
+    }
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    h1::after {
+        width: 50px;
+        height: 2px;
+    }
+    input[type="text"] {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        width: calc(100% - 30px);
+        /* Adjust for smaller padding */
+    }
+    .progress-container {
+        height: 12px;
+        margin: 20px auto 10px;
+    }
+    .progress-text {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+    .rule-item {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        /* Adjusted margin */
+        gap: 8px;
+    }
+    .rule-icon {
+        font-size: 1.1rem;
+    }
+    .success-msg {
+        font-size: 1.4rem;
+        margin-top: 25px;
+    }
+}
