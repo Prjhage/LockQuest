@@ -20,16 +20,16 @@ const romanNumerals = [
 const chessLetters = ["K", "Q", "R", "B", "N", "P"];
 
 const isMathEquation = (str) => {
+  const match = str.match(/([0-9+\-*/().\s]+)=([0-9]+)/);
+  if (!match) return false;
   try {
-    const [expr, result] = str.split("=");
-    if (!expr || !result) return false;
-    if (!/^[0-9+\-*/().\s]+$/.test(expr)) return false;
-    return eval(expr) === Number(result);
+    const expr = match[1];
+    const result = Number(match[2]);
+    return eval(expr) === result;
   } catch {
     return false;
   }
 };
-
 const getLocalTime = () => {
   const now = new Date();
   const hours = `${now.getHours()}`.padStart(2, "0");
