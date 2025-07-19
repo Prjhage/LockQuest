@@ -3,18 +3,51 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const months = [
-  "january", "february", "march", "april", "may", "june",
-  "july", "august", "september", "october", "november", "december",
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december",
 ];
 
 const days = [
-  "monday", "tuesday", "wednesday", "thursday",
-  "friday", "saturday", "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
 ];
 
 const romanNumerals = [
-  "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
-  "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"
+  "I",
+  "II",
+  "III",
+  "IV",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "IX",
+  "X",
+  "XI",
+  "XII",
+  "XIII",
+  "XIV",
+  "XV",
+  "XVI",
+  "XVII",
+  "XVIII",
+  "XIX",
+  "XX",
 ];
 
 const chessLetters = ["K", "Q", "R", "B", "N", "P"];
@@ -30,16 +63,11 @@ const isMathEquation = (str) => {
     return false;
   }
 };
-const getLocalTime = () => {
-  const now = new Date();
-  const hours = `${now.getHours()}`.padStart(2, "0");
-  const minutes = `${now.getMinutes()}`.padStart(2, "0");
-  return `${hours}:${minutes}`;
-};
 
 function App() {
   const [password, setPassword] = useState("");
   const [maxRevealedRuleId, setMaxRevealedRuleId] = useState(0);
+
   const lower = password.toLowerCase();
   const digitSum = [...password]
     .filter((c) => /\d/.test(c))
@@ -100,9 +128,7 @@ function App() {
     {
       id: 12,
       text: "Include a Roman numeral (I, II, X, etc.)",
-      valid: romanNumerals.some((r) =>
-        password.toUpperCase().includes(r)
-      ),
+      valid: romanNumerals.some((r) => password.toUpperCase().includes(r)),
     },
     {
       id: 13,
@@ -111,13 +137,13 @@ function App() {
     },
     {
       id: 14,
-      text: "No repeated characters",
-      valid: new Set(password).size === password.length,
+      text: "Must contain at least 3 vowels (a, e, i, o, u)",
+      valid: (password.match(/[aeiouAEIOU]/g) || []).length >= 3,
     },
     {
       id: 15,
-      text: `Include local time (${getLocalTime()})`,
-      valid: password.includes(getLocalTime()),
+      text: "Password must end with an exclamation mark (!)",
+      valid: password.endsWith("!"),
     },
   ];
 
@@ -132,10 +158,8 @@ function App() {
   const visibleRules = allRules
     .filter((rule) => rule.id <= maxRevealedRuleId)
     .sort((a, b) => {
-      if (a.valid === b.valid) {
-        return b.id - a.id; // Descending order by rule number
-      }
-      return a.valid ? 1 : -1; // Invalid rules first
+      if (a.valid === b.valid) return b.id - a.id;
+      return a.valid ? 1 : -1;
     });
 
   const completedRules = visibleRules.filter((r) => r.valid).length;
